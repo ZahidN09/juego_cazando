@@ -73,6 +73,10 @@ function detertarColision() {
         //alert("ATRAPADO");
         cambiarPosicionComida();
         aumentarPuntaje();
+        if(puntaje == 6){
+            clearTimeout(intervalo);
+            alert("GANASTE, BUENA CACERÍA");
+        }
     }
 }
 
