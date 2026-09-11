@@ -11,6 +11,8 @@ const ANCHO_GATO = 150;
 const ALTO_COMIDA = 60;
 const ANCHO_COMIDA = 60;
 
+let puntaje = 0;
+
 function graficarGato() {
     graficarRectangulo(gatoX, gatoY, ANCHO_GATO, ALTO_GATO, "#e0a537");
     detertarColision();
@@ -65,8 +67,9 @@ function actualizarPantalla() {
 
 function detertarColision() {
     if (verificarColision()) {
-        alert("ATRAPADO");
+        //alert("ATRAPADO");
         cambiarPosicionComida();
+        aumentarPuntaje();
     }
 }
 
@@ -84,4 +87,9 @@ function verificarColision() {
         && gatoX < comidaX + ANCHO_COMIDA 
         && gatoY + ALTO_GATO > comidaY 
         && gatoY < comidaY + ALTO_COMIDA;
+}
+
+function aumentarPuntaje(){
+    puntaje = puntaje + 1;
+    mostarEnSpan("puntos",puntaje);
 }
