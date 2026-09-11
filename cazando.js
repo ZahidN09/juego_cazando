@@ -64,10 +64,24 @@ function actualizarPantalla() {
 }
 
 function detertarColision() {
-    if (gatoX + ANCHO_GATO > comidaX
-        && gatoX < comidaX + ANCHO_COMIDA
-        && gatoY + ALTO_GATO > comidaY
-        && gatoY < comidaY + ALTO_COMIDA) {
+    if (verificarColision()) {
         alert("ATRAPADO");
+        cambiarPosicionComida();
     }
+}
+
+function cambiarPosicionComida() {
+    comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
+    comidaY = generarAleatorio(0, canvas.height - ANCHO_COMIDA);
+    if (verificarColision()) { //Para que no reaparezca dentro del gato
+        cambiarPosicionComida();
+    }
+    actualizarPantalla();
+}
+
+function verificarColision() {
+    return gatoX + ANCHO_GATO > comidaX 
+        && gatoX < comidaX + ANCHO_COMIDA 
+        && gatoY + ALTO_GATO > comidaY 
+        && gatoY < comidaY + ALTO_COMIDA;
 }
