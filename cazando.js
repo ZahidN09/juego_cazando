@@ -30,7 +30,7 @@ function iniciarJuego() {
     comidaX = canvas.width - ANCHO_COMIDA;
     comidaY = canvas.height - ALTO_COMIDA;
     actualizarPantalla();
-    intervalo = setInterval(restarTiempo,1000);
+    intervalo = setInterval(restarTiempo, 1000);
 }
 
 function graficarRectangulo(x, y, ancho, alto, color) {
@@ -73,7 +73,7 @@ function detertarColision() {
         //alert("ATRAPADO");
         cambiarPosicionComida();
         aumentarPuntaje();
-        if(puntaje == 6){
+        if (puntaje == 6 && tiempo > 0) {
             clearTimeout(intervalo);
             alert("GANASTE, BUENA CACERÍA");
         }
@@ -90,18 +90,22 @@ function cambiarPosicionComida() {
 }
 
 function verificarColision() {
-    return gatoX + ANCHO_GATO > comidaX 
-        && gatoX < comidaX + ANCHO_COMIDA 
-        && gatoY + ALTO_GATO > comidaY 
+    return gatoX + ANCHO_GATO > comidaX
+        && gatoX < comidaX + ANCHO_COMIDA
+        && gatoY + ALTO_GATO > comidaY
         && gatoY < comidaY + ALTO_COMIDA;
 }
 
-function aumentarPuntaje(){
+function aumentarPuntaje() {
     puntaje = puntaje + 1;
-    mostarEnSpan("puntos",puntaje);
+    mostarEnSpan("puntos", puntaje);
 }
 
-function restarTiempo(){
+function restarTiempo() {
     tiempo = tiempo - 1;
-    mostarEnSpan("tiempo",tiempo);
+    mostarEnSpan("tiempo", tiempo);
+    if (tiempo <= 0) {
+        clearTimeout(intervalo);
+        alert("GAME OVER, SUERTE PARA LA PRÓXIMA");
+    }
 }
