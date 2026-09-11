@@ -1,5 +1,5 @@
 let canvas = document.getElementById("areaJuego");
-let cxt = canvas.getContext("2d");
+let ctx = canvas.getContext("2d");
 
 let gatoX = 0;
 let gatoY = 0;
@@ -29,6 +29,17 @@ function iniciarJuego() {
 }
 
 function graficarRectangulo(x,y,ancho,alto,color){
-    cxt.fillStyle = color;
-    cxt.fillRect(x, y, ancho, alto);
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, ancho, alto);
+}
+
+function limpiarCanva() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function moverIzquierda(){
+    gatoX = gatoX - 10;
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
 }
