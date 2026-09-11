@@ -109,3 +109,12 @@ function restarTiempo() {
         alert("GAME OVER, SUERTE PARA LA PRÓXIMA");
     }
 }
+
+function reiniciar(){
+    clearTimeout(intervalo);
+    puntaje = 0;
+    mostarEnSpan("puntos", puntaje);
+    tiempo = 10;
+    mostarEnSpan("tiempo", tiempo);
+    iniciarJuego();
+}
