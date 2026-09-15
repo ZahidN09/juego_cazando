@@ -1,42 +1,290 @@
+/* =========================================================
+   Juego Cazando — Identidad visual "mascotas"
+   Paleta clara: crema, melocotón, menta y coral suave
+   ========================================================= */
+
+:root {
+  --fondo: #FFF9F3;
+  --fondo-2: #FFEFE0;
+  --blanco: #FFFFFF;
+  --crema-borde: #FFE3C7;
+  --melocoton: #FFD3A8;
+  --naranja: #F2A35E;
+  --naranja-osc: #D9822B;
+  --menta: #C9EEDD;
+  --menta-osc: #63BE9B;
+  --texto: #5B4636;
+  --texto-suave: #94806F;
+  --coral: #E4694F;
+  --sombra-suave: 0 10px 24px rgba(196, 152, 110, .18);
+  --sombra-boton: 0 10px 18px rgba(200, 150, 100, .22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
   margin: 0;
-  padding: 20px;
+  padding: 30px 16px 60px;
+  min-height: 100vh;
+  text-align: center;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--texto);
+  background-color: var(--fondo);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170' viewBox='0 0 170 170'%3E%3Cg fill='%23E7C6A4' fill-opacity='0.4'%3E%3Ccircle cx='28' cy='28' r='7.5'/%3E%3Ccircle cx='47' cy='20' r='7.5'/%3E%3Ccircle cx='66' cy='28' r='7.5'/%3E%3Cellipse cx='47' cy='50' rx='18' ry='14.5'/%3E%3Ccircle cx='118' cy='112' r='6.5'/%3E%3Ccircle cx='135' cy='105' r='6.5'/%3E%3Ccircle cx='152' cy='112' r='6.5'/%3E%3Cellipse cx='135' cy='131' rx='15' ry='12'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(180deg, #FFF9F3 0%, #FFEFE0 100%);
+  background-repeat: repeat, no-repeat;
+  background-size: 170px 170px, cover;
+}
+
+/* ---------- Tarjeta contenedora ---------- */
+.contenedor {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 28px 22px 34px;
+  background: rgba(255, 255, 255, .78);
+  border: 2px solid var(--crema-borde);
+  border-radius: 36px;
+  box-shadow: var(--sombra-suave);
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  margin-bottom: 4px;
 }
 
 h1 {
-  margin-bottom: 5px;
+  margin: 0 0 10px;
+  font-size: clamp(26px, 5vw, 36px);
+  letter-spacing: .5px;
+  color: #C97A3A;
+  text-shadow: 0 2px 0 #FFFFFF, 0 5px 12px rgba(201, 122, 58, .18);
 }
 
-.panel {
-  margin: 15px 0;
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+.autor {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  background: #FFF3E6;
+  border: 1.5px dashed var(--melocoton);
+  border-radius: 999px;
+}
+
+.subtitulo {
+  margin: 12px 0 0;
+  font-size: 15px;
+  color: var(--texto-suave);
+}
+
+/* ---------- Zona de juego ---------- */
+.zona-juego {
+  width: fit-content;
+  max-width: 100%;
+  margin: 18px auto 0;
+  padding: 12px;
+  line-height: 0;
+  background: var(--blanco);
+  border: 3px solid var(--crema-borde);
+  border-radius: 30px;
+  box-shadow: var(--sombra-suave);
 }
 
 canvas {
-  background: white;
-  border: 2px solid black;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #FFFDF9;
+  border: 2px solid #F6DEC5;
+  border-radius: 20px;
 }
 
-.controles {
-  margin-top: 20px;
+/* ---------- Panel de puntos / tiempo ---------- */
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 22px auto 0;
+  padding: 14px 18px;
+  font-size: 18px;
+  background: var(--blanco);
+  border: 3px solid var(--crema-borde);
+  border-radius: 26px;
+  box-shadow: var(--sombra-suave);
 }
 
+.marcador {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  font-weight: bold;
+  color: #7A5B41;
+  background: linear-gradient(180deg, #FFF6EC, #FFE9D4);
+  border: 2px solid #FFDCBC;
+  border-radius: 999px;
+}
+
+#puntos,
+#tiempo {
+  display: inline-block;
+  min-width: 1.4em;
+  font-size: 22px;
+  color: var(--naranja-osc);
+}
+
+/* ---------- Botones ---------- */
 button {
   margin: 5px;
   padding: 10px 16px;
+  font-family: inherit;
   font-size: 18px;
+  font-weight: bold;
+  color: #6B4A2E;
   cursor: pointer;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #FFE6C6, #FFCE9A);
+  box-shadow: 0 5px 0 #E7A96D, var(--sombra-boton);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
 }
 
+button:hover {
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #E7A96D, 0 4px 8px rgba(200, 150, 100, .2);
+}
+
+button:focus-visible {
+  outline: 3px dashed var(--menta-osc);
+  outline-offset: 3px;
+}
+
+/* Botón reiniciar (menta) */
+.boton-reiniciar {
+  padding: 12px 26px;
+  color: #2F6B56;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #D8F3E7, #A9E3CB);
+  box-shadow: 0 5px 0 #7CC9A9, 0 10px 18px rgba(110, 190, 160, .28);
+}
+
+.boton-reiniciar:active {
+  box-shadow: 0 2px 0 #7CC9A9, 0 4px 8px rgba(110, 190, 160, .25);
+}
+
+/* ---------- Controles en forma de cruz ---------- */
+.controles {
+  display: grid;
+  grid-template-columns: repeat(3, 68px);
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.controles br {
+  display: none;
+}
+
+.controles button:nth-of-type(1) { grid-column: 2; grid-row: 1; }
+.controles button:nth-of-type(2) { grid-column: 1; grid-row: 2; }
+.controles button:nth-of-type(3) { grid-column: 2; grid-row: 2; }
+.controles button:nth-of-type(4) { grid-column: 3; grid-row: 2; }
+
+.boton-flecha {
+  width: 68px;
+  height: 68px;
+  margin: 0;
+  padding: 0;
+  font-size: 26px;
+  line-height: 1;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #FFEACF, #FFD3A8);
+}
+
+/* ---------- Mensaje del juego ---------- */
 #mensaje {
-  font-size: 20px;
+  min-height: 34px;
+  margin: 22px 0 0;
+  font-size: 22px;
   font-weight: bold;
-  color: darkred;
-  margin-top: 15px;
+  letter-spacing: .5px;
+  color: var(--coral);
+}
+
+#mensaje:not(:empty) {
+  display: inline-block;
+  padding: 10px 26px;
+  background: #FFF1E8;
+  border: 2px dashed #FFC49B;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(230, 150, 110, .18);
+  animation: aparecer .35s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Adaptación a móviles ---------- */
+@media (max-width: 520px) {
+  body {
+    padding: 16px 10px 40px;
+  }
+
+  .contenedor {
+    padding: 20px 14px 26px;
+    border-radius: 28px;
+  }
+
+  .panel {
+    gap: 10px;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .marcador {
+    padding: 7px 14px;
+  }
+
+  #puntos,
+  #tiempo {
+    font-size: 19px;
+  }
+
+  .controles {
+    grid-template-columns: repeat(3, 60px);
+    gap: 8px;
+  }
+
+  .boton-flecha {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+  }
+
+  #mensaje {
+    font-size: 19px;
+  }
+}
+
+/* ---------- Accesibilidad: menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
