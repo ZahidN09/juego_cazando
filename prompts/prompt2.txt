@@ -1,0 +1,1 @@
+Ahora analiza la siguiente imagen fongo.jpg y añádela como fondo en la página, actualiza la paleta de colores para darle un mejor aspecto.
