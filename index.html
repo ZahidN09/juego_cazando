@@ -22,18 +22,23 @@
       <canvas id="areaJuego" width="500" height="500"></canvas>
     </section>
 
-    <div class="panel">
-      <span class="marcador">🍖 Puntos: <span id="puntos">0</span></span>
-      <button class="boton-reiniciar" onclick="reiniciar()">🔁 Reiniciar</button>
-      <span class="marcador">⏰ Tiempo: <span id="tiempo">10</span></span>
-    </div>
+    <!-- Barra única: panel (columna vertical) a la izquierda, controles a la derecha -->
+    <div class="barra-controles">
 
-    <div class="controles">
-      <button class="boton-flecha" onclick="moverArriba()">⬆</button>
-      <br>
-      <button class="boton-flecha" onclick="moverIzquierda()">⬅</button>
-      <button class="boton-flecha" onclick="moverAbajo()">⬇</button>
-      <button class="boton-flecha" onclick="moverDerecha()">➡</button>
+      <div class="panel">
+        <span class="marcador">🍖 Puntos: <span id="puntos">0</span></span>
+        <button class="boton-reiniciar" onclick="reiniciar()">🔁 Reiniciar</button>
+        <span class="marcador">⏰ Tiempo: <span id="tiempo">10</span></span>
+      </div>
+
+      <div class="controles">
+        <button class="boton-flecha" onclick="moverArriba()">⬆</button>
+        <br>
+        <button class="boton-flecha" onclick="moverIzquierda()">⬅</button>
+        <button class="boton-flecha" onclick="moverAbajo()">⬇</button>
+        <button class="boton-flecha" onclick="moverDerecha()">➡</button>
+      </div>
+
     </div>
 
     <p id="mensaje"></p>

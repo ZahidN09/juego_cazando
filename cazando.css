@@ -39,11 +39,15 @@ body {
   background-size: 170px 170px, cover;
 }
 
-/* ---------- Tarjeta contenedora ---------- */
+/* ---------- Tarjeta contenedora ----------
+   El ancho se calcula para que coincida EXACTAMENTE con el ancho exterior
+   de la zona de juego (canvas 500 + padding 12*2 + borde 3*2 = 530px).
+   Con padding 22px y borde 2px por lado => 530 + 44 + 4 = 578px. */
 .contenedor {
-  max-width: 640px;
+  width: 100%;
+  max-width: 578px;
   margin: 0 auto;
-  padding: 28px 22px 34px;
+  padding: 24px 22px 30px;
   background: rgba(255, 255, 255, .78);
   border: 2px solid var(--crema-borde);
   border-radius: 36px;
@@ -57,7 +61,7 @@ body {
 
 h1 {
   margin: 0 0 10px;
-  font-size: clamp(26px, 5vw, 36px);
+  font-size: clamp(24px, 5vw, 32px);
   letter-spacing: .5px;
   color: #C97A3A;
   text-shadow: 0 2px 0 #FFFFFF, 0 5px 12px rgba(201, 122, 58, .18);
@@ -67,7 +71,7 @@ h1 {
   display: inline-block;
   margin: 0;
   padding: 6px 18px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.6px;
   text-transform: uppercase;
@@ -79,11 +83,11 @@ h1 {
 
 .subtitulo {
   margin: 12px 0 0;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--texto-suave);
 }
 
-/* ---------- Zona de juego ---------- */
+/* ---------- Zona de juego (referencia de ancho) ---------- */
 .zona-juego {
   width: fit-content;
   max-width: 100%;
@@ -98,6 +102,7 @@ h1 {
 
 canvas {
   display: block;
+  width: 500px;
   max-width: 100%;
   height: auto;
   background: #FFFDF9;
@@ -105,48 +110,62 @@ canvas {
   border-radius: 20px;
 }
 
-/* ---------- Panel de puntos / tiempo ---------- */
-.panel {
+/* ---------- Barra única de controles (mismo ancho que el canvas) ---------- */
+.barra-controles {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin: 22px auto 0;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  margin: 18px auto 0;
   padding: 14px 18px;
-  font-size: 18px;
   background: var(--blanco);
   border: 3px solid var(--crema-borde);
   border-radius: 26px;
   box-shadow: var(--sombra-suave);
 }
 
+/* Panel (izquierda): puntos, reiniciar y tiempo en COLUMNA VERTICAL */
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
 .marcador {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 20px;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
   font-weight: bold;
   color: #7A5B41;
   background: linear-gradient(180deg, #FFF6EC, #FFE9D4);
   border: 2px solid #FFDCBC;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 #puntos,
 #tiempo {
   display: inline-block;
-  min-width: 1.4em;
-  font-size: 22px;
+  min-width: 1.2em;
+  font-size: 18px;
   color: var(--naranja-osc);
 }
 
 /* ---------- Botones ---------- */
 button {
-  margin: 5px;
-  padding: 10px 16px;
+  margin: 0;
+  padding: 9px 16px;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   color: #6B4A2E;
   cursor: pointer;
@@ -174,7 +193,7 @@ button:focus-visible {
 
 /* Botón reiniciar (menta) */
 .boton-reiniciar {
-  padding: 12px 26px;
+  padding: 10px 18px;
   color: #2F6B56;
   border-radius: 999px;
   background: linear-gradient(180deg, #D8F3E7, #A9E3CB);
@@ -185,13 +204,14 @@ button:focus-visible {
   box-shadow: 0 2px 0 #7CC9A9, 0 4px 8px rgba(110, 190, 160, .25);
 }
 
-/* ---------- Controles en forma de cruz ---------- */
+/* ---------- Pad de movimiento (derecha) en forma de cruz ---------- */
 .controles {
+  flex: 0 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 68px);
-  justify-content: center;
-  gap: 10px;
-  margin-top: 22px;
+  grid-template-columns: repeat(3, 52px);
+  grid-auto-rows: 52px;
+  gap: 6px;
+  margin: 0;
 }
 
 .controles br {
@@ -204,11 +224,10 @@ button:focus-visible {
 .controles button:nth-of-type(4) { grid-column: 3; grid-row: 2; }
 
 .boton-flecha {
-  width: 68px;
-  height: 68px;
-  margin: 0;
+  width: 52px;
+  height: 52px;
   padding: 0;
-  font-size: 26px;
+  font-size: 20px;
   line-height: 1;
   border-radius: 50%;
   background: linear-gradient(180deg, #FFEACF, #FFD3A8);
@@ -217,8 +236,8 @@ button:focus-visible {
 /* ---------- Mensaje del juego ---------- */
 #mensaje {
   min-height: 34px;
-  margin: 22px 0 0;
-  font-size: 22px;
+  margin: 18px 0 0;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: .5px;
   color: var(--coral);
@@ -239,6 +258,22 @@ button:focus-visible {
   to   { opacity: 1; transform: scale(1); }
 }
 
+/* ---------- Adaptación a pantallas medianas ----------
+   Si el contenedor no cabe completo, la barra pasa a columna centrada. */
+@media (max-width: 600px) {
+  .barra-controles {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: 240px;
+  }
+}
+
 /* ---------- Adaptación a móviles ---------- */
 @media (max-width: 520px) {
   body {
@@ -250,34 +285,35 @@ button:focus-visible {
     border-radius: 28px;
   }
 
-  .panel {
-    gap: 10px;
-    padding: 12px;
-    font-size: 16px;
-  }
-
   .marcador {
     padding: 7px 14px;
+    font-size: 14px;
   }
 
   #puntos,
   #tiempo {
-    font-size: 19px;
+    font-size: 17px;
+  }
+
+  .boton-reiniciar {
+    font-size: 14px;
+    padding: 9px 16px;
   }
 
   .controles {
-    grid-template-columns: repeat(3, 60px);
-    gap: 8px;
+    grid-template-columns: repeat(3, 50px);
+    grid-auto-rows: 50px;
+    gap: 6px;
   }
 
   .boton-flecha {
-    width: 60px;
-    height: 60px;
-    font-size: 22px;
+    width: 50px;
+    height: 50px;
+    font-size: 19px;
   }
 
   #mensaje {
-    font-size: 19px;
+    font-size: 18px;
   }
 }
 

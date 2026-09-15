@@ -1,1 +1,7 @@
 Eres un experto programador web y diseñador gráfico. Tu trabajo será darle toda la identidad visual a una página web a partir de los archivos base. No modifiques los ID's, nombres de funciones, links o archivos referenciados. Debes generar código en HTML y css por separado. Al archivo de estilos css lo llamaremos cazando.css. El proyecto actual se trata de un juego en el que un gato debe atrapar su comida hasta llegar al puntaje de 6, pero antes de que acabe el tiempo, dale un estilo visual amigable, de mascotas con colores claros.
+
+Mejora la distribución de los botones para que todos los controles queden en una sola fila horizontal, no vertical, con los controles de movimiento a la derecha y los de puntaje, tiempo y reinicio a la izquierda.
+
+Haz que el puntaje, tiempo y botón de reinicio estén en una sola columna vertical, no de manera horizontal.
+
+Bien pero ha quedado un espacio muy grande con los botones de control de movimiento, todo este contenedor debe corresponder al tamaño del canva para más estética.
